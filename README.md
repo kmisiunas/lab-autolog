@@ -9,6 +9,9 @@ Development in progress.
 ## How to setup
 
 ### Hardware
+ - Raspberry Pi 2
+ - Sensor Hat
+ - 
 
 ### Software
 
@@ -22,6 +25,8 @@ Development in progress.
 
 ### data.sparkfun.com
 
+*Not responsive service*
+
 `OGzNYR7mdEFgYOON7g8m`
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
@@ -29,6 +34,8 @@ https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
 Fields: humidity, light, pressure, temp, vibration, vibration_peaks, cpu_temp
 
 ### Wolfram Data Drop
+
+*free account only allows 60 submissions / hour and max data is 15mb*
 
 Databin ID: 7H3BhoY5
 
