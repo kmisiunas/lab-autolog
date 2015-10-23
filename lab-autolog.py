@@ -88,7 +88,7 @@ while(True):
   else:
     sense.set_pixel(0, 0, blue)
   # CPU rest
-  time.sleep(0.05)
+  #time.sleep(0.05)
 
 
 # Log failure
