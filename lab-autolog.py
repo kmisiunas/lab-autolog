@@ -34,7 +34,7 @@ def sendInforToServer( sense, vibration ):
    url += "&vibration=%.3f" % 0.0
    url += "&vibration_peaks=%.3f" % 0.0
    #send data via GET
-   f = urllib2.urlopen(query)
+   f = urllib2.urlopen(url)
    s = f.read()
    f.close()
    return []
