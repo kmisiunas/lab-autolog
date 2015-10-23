@@ -40,9 +40,12 @@ def sendInforToServer( sense, vibration ):
    url += "&vibration=%.3f" % 0.0
    url += "&vibration_peaks=%.3f" % 0.0
    #send data via GET
-   f = urllib2.urlopen(url)
-   s = f.read()
-   f.close()
+   try:
+      f = urllib2.urlopen(url, timeout = 1)
+      s = f.read()
+      f.close()
+   except urllib2.URLError, e:
+    raise MyException("There was an error: %r" % e)   
    return []
    
 def tempCalibrated( sense ):
