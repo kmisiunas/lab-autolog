@@ -13,10 +13,12 @@ import os
 updateInterval = 30 # in sec = 5min
 
 serverURL = "http://data.sparkfun.com/input/"
-
 publicKey = "OGzNYR7mdEFgYOON7g8m"
-
 privateKey = "8beDvBJZ91fezaag4eNl"
+
+# Wolfram DataDrop
+wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
+debianID = "7H3BhoY5"
 
 tempOffset = 0.0
 tempScale = 1.0
@@ -32,7 +34,8 @@ def sendInforToServer( sense, vibration ):
    "reads infor and sends it to the server"
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
-   url += "&temp=%.2f" % sense.get_temperature()
+   url = wolframServer + debianID
+   vals = "&temp=%.2f" % cpuTemp()
    url += "&humidity=%.3f" % sense.get_humidity()
    url += "&pressure=%.3f" % sense.get_pressure()
    url += "&cpu_temp=%.2f" % cpuTemp()
