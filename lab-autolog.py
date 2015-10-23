@@ -97,9 +97,9 @@ while(True):
   green = (0, 255, 0)
   blue = (0, 0, 255)
   if( int(time.time()) % 2 == 0 ):
-    sense.set_pixel(0, 1, green)
+    sense.set_pixel(0, 2, green)
   else:
-    sense.set_pixel(0, 1, blue)
+    sense.set_pixel(0, 2, blue)
   # CPU rest
   time.sleep(0.05)
 
