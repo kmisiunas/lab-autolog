@@ -16,7 +16,7 @@ publicKey = "OGzNYR7mdEFgYOON7g8m"
 
 privateKey = "8beDvBJZ91fezaag4eNl"
 
-accelerometerUpdateInterval = 0.01 # in sec
+accelerometerUpdateInterval = 0.05 # in sec
 
 
 ### CODE ###
