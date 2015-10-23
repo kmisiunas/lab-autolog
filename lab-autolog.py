@@ -4,6 +4,7 @@
 
 from sense_hat import SenseHat
 import time
+import urllib2
 
 ### PARAMETERS ###
 
@@ -23,9 +24,25 @@ accelerometerUpdateInterval = 0.01 # in sec
 sense = SenseHat()
 
 def sendInforToServer( sense, vibration ):
-   "function_docstring"
-   function_suite
+   "reads infor and sends it to the server"
+   url = serverURL + publicKey + "?private_key=" + privateKey
+   url += "&temp=%.3f" % sense.get_temperature()
+   url += "&humidity=%.3f" % sense.get_humidity()
+   url += "&pressure=%.1f" % sense.get_pressure()
+   url += "&cpu_temp=%.3f" % 0.0
+   url += "&light=%.3f" % 0.0
+   url += "&vibration=%.3f" % 0.0
+   url += "&vibration_peaks=%.3f" % 0.0
+   #send data via GET
+   f = urllib2.urlopen(query)
+   s = f.read()
+   f.close()
    return [expression]
+   
+def readAndResetVibration( vibration ):
+   "sends infor to the server"
+   function_suite
+   return [expression]   
    
 def vibrationDetector( sense, vibration ):
    "function_docstring"
@@ -37,7 +54,7 @@ def vibrationDetector( sense, vibration ):
 
 ## Clear the screen
 
-
+# vibration: [ sum of |x|, sum of x^2, n] 
 vibration = [0.0, 0.0, 0.0]
 timeOld = time.time()
 timeOldAccelerometer = time.time()
