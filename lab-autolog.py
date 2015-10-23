@@ -81,8 +81,14 @@ while(True):
     #if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
       #print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
   # blink LED somewhere
+  green = (0, 255, 0)
+  blue = (0, 0, 255)
+  if( int(time.time()) == 0 ):
+    sense.set_pixel(0, 0, green)
+  else:
+    sense.set_pixel(0, 0, blue)
   # CPU rest
-  time.sleep(0.1)
+  time.sleep(0.05)
 
 
 # Log failure
