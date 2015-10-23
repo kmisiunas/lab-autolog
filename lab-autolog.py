@@ -72,7 +72,7 @@ while(True):
     vibrationDetector(sense, vibration)
     timeOld += accelerometerUpdateInterval
     if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
-      print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
+      #print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
   
   # blink LED somewhere
   
@@ -82,3 +82,18 @@ while(True):
 print( 'lab-autolog shutdown at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
 
 # print red X on the hat to let the user know that t needs restatting
+X = [255, 0, 0]  # Red
+O = [0, 0, 0]  # White
+
+question_mark = [
+X, O, O, O, O, O, O, X,
+O, X, O, O, O, O, X, O,
+O, O, X, O, O, X, O, O,
+O, O, O, X, O, O, O, O,
+O, O, O, O, X, O, O, O,
+O, O, X, O, O, X, O, O,
+O, X, O, O, O, O, X, O,
+X, O, O, O, O, O, O, X
+]
+
+sense.set_pixels(question_mark)
