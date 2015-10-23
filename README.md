@@ -21,3 +21,5 @@ Development in progress.
 ## Public Key
 
 `OGzNYR7mdEFgYOON7g8m`
+
+https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
