@@ -18,7 +18,7 @@ privateKey = "8beDvBJZ91fezaag4eNl"
 
 # Wolfram DataDrop
 wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
-debianID = "7H3BhoY5"
+debianID = "7H5Dn3Ej"
 
 tempOffset = 0.0
 tempScale = 1.0
