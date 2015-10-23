@@ -37,17 +37,15 @@ def sendInforToServer( sense, vibration ):
    f = urllib2.urlopen(query)
    s = f.read()
    f.close()
-   return [expression]
+   return []
    
 def readAndResetVibration( vibration ):
    "sends infor to the server"
-   function_suite
-   return [expression]   
+   return []   
    
 def vibrationDetector( sense, vibration ):
    "function_docstring"
-   function_suite
-   return [expression]   
+   return []   
 
 
 # Init
