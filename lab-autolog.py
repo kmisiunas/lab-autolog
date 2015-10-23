@@ -36,15 +36,15 @@ def sendInforToServer( sense, vibration ):
    url = serverURL + publicKey + "?private_key=" + privateKey
    url = wolframServer + debianID
    vals = "&temp=%.2f" % cpuTemp()
-   url += "&humidity=%.3f" % sense.get_humidity()
-   url += "&pressure=%.3f" % sense.get_pressure()
-   url += "&cpu_temp=%.2f" % cpuTemp()
-   url += "&light=%.3f" % 0.0
-   url += "&vibration=%.3f" % 0.0
-   url += "&vibration_peaks=%.3f" % 0.0
+   vals += "&humidity=%.3f" % sense.get_humidity()
+   vals += "&pressure=%.3f" % sense.get_pressure()
+   vals += "&cpu_temp=%.2f" % cpuTemp()
+   vals += "&light=%.3f" % 0.0
+   vals += "&vibration=%.3f" % 0.0
+   vals += "&vibration_peaks=%.3f" % 0.0
    #send data via GET
    try:
-      f = urllib2.urlopen(url, timeout = 1)
+      f = urllib2.urlopen(url + vals, timeout = 1)
       s = f.read()
       f.close()
    except urllib2.URLError, e:
