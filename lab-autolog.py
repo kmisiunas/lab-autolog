@@ -18,6 +18,9 @@ publicKey = "OGzNYR7mdEFgYOON7g8m"
 
 privateKey = "8beDvBJZ91fezaag4eNl"
 
+tempOffset = 0.0
+tempScale = 1.0
+
 accelerometerUpdateInterval = 0.1 # in sec
 
 
@@ -41,6 +44,9 @@ def sendInforToServer( sense, vibration ):
    s = f.read()
    f.close()
    return []
+   
+def tempCalibrated( sense ):
+   return (sense.get_temperature() + tempOffset) * tempScale
    
 def readAndResetVibration( vibration ):
    "sends infor to the server"
