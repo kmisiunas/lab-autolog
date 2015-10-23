@@ -5,6 +5,8 @@
 from sense_hat import SenseHat
 import time
 import urllib2
+import os 
+
 
 ### PARAMETERS ###
 
@@ -29,7 +31,7 @@ def sendInforToServer( sense, vibration ):
    url += "&temp=%.3f" % sense.get_temperature()
    url += "&humidity=%.3f" % sense.get_humidity()
    url += "&pressure=%.1f" % sense.get_pressure()
-   url += "&cpu_temp=%.3f" % 0.0
+   url += "&cpu_temp=%.3f" % cpuTemp()
    url += "&light=%.3f" % 0.0
    url += "&vibration=%.3f" % 0.0
    url += "&vibration_peaks=%.3f" % 0.0
@@ -46,6 +48,11 @@ def readAndResetVibration( vibration ):
 def vibrationDetector( sense, vibration ):
    "function_docstring"
    return []   
+   
+def cpuTemp():
+   tmp = float( os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline() )
+   return (tmp/1000)
+   
 
 
 # Init
@@ -76,6 +83,8 @@ while(True):
   
   # blink LED somewhere
   
+  # CPU rest
+  time.sleep(0.1)
 
 
 # Log failure
