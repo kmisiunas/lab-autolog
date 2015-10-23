@@ -82,7 +82,6 @@ while(True):
       #print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
   
   # blink LED somewhere
-  
   # CPU rest
   time.sleep(0.1)
 
