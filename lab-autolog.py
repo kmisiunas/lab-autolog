@@ -48,7 +48,7 @@ def sendInforToServer( sense, vibration ):
       s = f.read()
       f.close()
    except urllib2.URLError, e:
-    raise MyException("There was an error: %r" % e)   
+     print("There was an error: %r" % e)   
    return []
    
 def tempCalibrated( sense ):
