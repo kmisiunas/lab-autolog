@@ -31,3 +31,5 @@ Fields: humidity, light, pressure, temp, vibration, vibration_peaks, cpu_temp
 ### Wolfram Data Drop
 
 Databin ID: 7H3BhoY5
+
+### www.SensorCloud.com
