@@ -17,3 +17,7 @@ Development in progress.
  - [ ] Send data every 5 min to data.sparkfun.com
  - [ ] Activley collect vibration data 
  - 
+
+## Public Key
+
+`OGzNYR7mdEFgYOON7g8m`
