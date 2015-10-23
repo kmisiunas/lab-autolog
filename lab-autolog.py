@@ -28,10 +28,10 @@ sense = SenseHat()
 def sendInforToServer( sense, vibration ):
    "reads infor and sends it to the server"
    url = serverURL + publicKey + "?private_key=" + privateKey
-   url += "&temp=%.3f" % sense.get_temperature()
+   url += "&temp=%.2f" % sense.get_temperature()
    url += "&humidity=%.3f" % sense.get_humidity()
-   url += "&pressure=%.1f" % sense.get_pressure()
-   url += "&cpu_temp=%.3f" % cpuTemp()
+   url += "&pressure=%.3f" % sense.get_pressure()
+   url += "&cpu_temp=%.2f" % cpuTemp()
    url += "&light=%.3f" % 0.0
    url += "&vibration=%.3f" % 0.0
    url += "&vibration_peaks=%.3f" % 0.0
