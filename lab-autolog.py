@@ -67,7 +67,7 @@ while(True):
   # Update aceleroter
   if(time.time() >= timeOldAccelerometer):
     vibrationDetector(sense, vibration)
-    timeOld += acceleroterUpdateInterval
+    timeOld += accelerometerUpdateInterval
     if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
       print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
   
