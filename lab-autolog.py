@@ -8,7 +8,7 @@ import urllib2
 
 ### PARAMETERS ###
 
-updateInterval = 5*60 # in sec = 5min
+updateInterval = 30 # in sec = 5min
 
 serverURL = "http://data.sparkfun.com/input/"
 
@@ -51,6 +51,9 @@ def vibrationDetector( sense, vibration ):
 # Init
 
 ## Clear the screen
+#sense.show_message("")
+sense.clear(255, 255, 255)
+sense.low_light = True
 
 # vibration: [ sum of |x|, sum of x^2, n] 
 vibration = [0.0, 0.0, 0.0]
