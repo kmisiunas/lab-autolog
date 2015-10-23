@@ -18,10 +18,16 @@ Development in progress.
  - [ ] Activley collect vibration data 
  - 
 
-## Public Key
+## Data Storage
+
+### data.sparkfun.com
 
 `OGzNYR7mdEFgYOON7g8m`
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
 
-Fields: humidity, light, pressure, temp, vibration, vibration_peaks
+Fields: humidity, light, pressure, temp, vibration, vibration_peaks, cpu_temp
+
+### Wolfram Data Drop
+
+Databin ID: 7H3BhoY5
