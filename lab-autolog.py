@@ -78,9 +78,8 @@ while(True):
   if(time.time() >= timeOldAccelerometer):
     vibrationDetector(sense, vibration)
     timeOld += accelerometerUpdateInterval
-    if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
+    #if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
       #print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
-  
   # blink LED somewhere
   # CPU rest
   time.sleep(0.1)
