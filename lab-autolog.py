@@ -16,7 +16,7 @@ publicKey = "OGzNYR7mdEFgYOON7g8m"
 
 privateKey = "8beDvBJZ91fezaag4eNl"
 
-accelerometerUpdateInterval = 0.05 # in sec
+accelerometerUpdateInterval = 0.1 # in sec
 
 
 ### CODE ###
@@ -52,7 +52,7 @@ def vibrationDetector( sense, vibration ):
 
 ## Clear the screen
 #sense.show_message("")
-sense.clear(255, 255, 255)
+sense.clear(0, 0, 0)
 sense.low_light = True
 
 # vibration: [ sum of |x|, sum of x^2, n] 
