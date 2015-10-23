@@ -23,3 +23,5 @@ Development in progress.
 `OGzNYR7mdEFgYOON7g8m`
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
+
+Fields: humidity, light, pressure, temp, vibration, vibration_peaks
