@@ -71,7 +71,7 @@ sense.low_light = True
 
 # vibration: [ sum of |x|, sum of x^2, n] 
 vibration = [0.0, 0.0, 0.0]
-timeOld = int(time.time()) / 60 *60 # ddd later +60
+timeOld = int(time.time()) / 60 *60  + 60
 timeOldAccelerometer = time.time()
 
 while(True):
