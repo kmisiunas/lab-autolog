@@ -34,7 +34,7 @@ def sendInforToServer( sense, vibration ):
    "reads infor and sends it to the server"
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
-   #url = wolframServer + debianID
+   url = wolframServer + debianID
    vals = "&temp=%.2f" % tempCalibrated(sense)
    vals += "&humidity=%.3f" % sense.get_humidity()
    vals += "&pressure=%.3f" % sense.get_pressure()
