@@ -45,7 +45,7 @@ def sendInforToServer( sense, vibration ):
    #send data via GET
    try:
       f = urllib2.urlopen(url + vals, timeout = 1)
-      s = f.read()
+      #s = f.read()
       f.close()
    except urllib2.URLError, e:
      print("There was an error: %r" % e)   
