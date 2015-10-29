@@ -63,10 +63,10 @@ def measureAccumulate():
    "Function for accumulating measurements"
    schedule.enter( intervalMeasurment, 2, measureAccumulate, () ) # reoccuring 
    global temp, humidity, pressure
-   #temp.append( tempCalibrated() )
-   #humidity.append( sense.get_humidity() )
-   #pressure.append( sense.get_pressure() )
-   print("temp " + tempCalibrated())
+   temp.append( tempCalibrated() )
+   humidity.append( sense.get_humidity() )
+   pressure.append( sense.get_pressure() )
+   print("temp " + str(tempCalibrated()))
    
 def clearAccumulate():
    "Function for clearing accumulated data forn new averaging"
