@@ -5,7 +5,7 @@
 from sense_hat import SenseHat
 import sched, time
 import urllib2
-import os, random, colorsys
+import os, random, colorsys, math
 
 
 ### PARAMETERS ###
@@ -89,8 +89,8 @@ def playGame():
    schedule.enter( speed , 3, playGame, () ) # reooccuring 
    global gX, gY, gPos
    if(random.random() > 0.7 - temp*0.2):
-      gX = int( random.random() * 2 - 1)
-      gY = int( random.random() * 2 - 1)
+      gX = round( random.random() * 2 - 1)
+      gY = round( random.random() * 2 - 1)
    sense.set_pixel(gPos[0], gPos[1], (0,0,0) ) #old pixel off
    gPos[0] = gPos[0] + gX
    gPos[1] = gPos[1] + gY
