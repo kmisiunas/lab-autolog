@@ -118,7 +118,7 @@ def gameNewDirection():
    global gX, gY
    gX = round( random.random() * 2 - 1)
    gY = round( random.random() * 2 - 1)
-   if( gX == 0 && gY ==0 ): 
+   if( gX == 0 and gY == 0 ): 
       gameNewDirection()
 
 ###  Init ###
