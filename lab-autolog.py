@@ -5,7 +5,7 @@
 from sense_hat import SenseHat
 import sched, time
 import urllib2
-import os, random
+import os, random, colorsys
 
 
 ### PARAMETERS ###
@@ -91,21 +91,30 @@ def playGame():
    if(random.random() > 0.7 - temp*0.2):
       gX = int( random.random() * 2 - 1)
       gY = int( random.random() * 2 - 1)
+   sense.set_pixel(gPos[0], gPos[1], (0,0,0) ) #old pixel off
    gPos[0] = gPos[0] + gX
    gPos[1] = gPos[1] + gY
    gameBounce()
-   
-   
-   
-   green = (0, 255, 0)
-   blue = (0, 0, 255)
-   if( int(time.time()) % 2 == 0 ):
-      sense.set_pixel(0, 2, green)
-   else:
-      sense.set_pixel(0, 2, blue)
+   color = colorsys.hsv_to_rgb((1-temp)*0.5 * 0.66  , 1.0, 1.0)
+   sense.set_pixel(gPos[0], gPos[1], (int(color[0]*255), int(color[1]*255), int(color[2]*255)) ) # new pixel off
       
 def gameBounce():
    "plater bounces from the walls" 
+   global gX, gY, gPos
+   maxLine = 8
+   if( gPos[0] < 0 ):
+      gPos[0] = 0
+      gX = 1
+   if( gPos[0] >= maxLine ):
+      gPos[0] = maxLine-1
+      gX = -1
+   if( gPos[1] < 0 ):
+      gPos[1] = 0
+      gY = 1
+   if( gPos[1] >= maxLine ):
+      gPos[1] = maxLine-1
+      gY = -1
+   
 
 ###  Init ###
 
