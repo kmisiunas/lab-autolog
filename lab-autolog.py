@@ -66,6 +66,7 @@ def measureAccumulate():
    temp.append( tempCalibrated() )
    humidity.append( sense.get_humidity() )
    pressure.append( sense.get_pressure() )
+   print("temp " + tempCalibrated())
    
 def clearAccumulate():
    "Function for clearing accumulated data forn new averaging"
@@ -94,7 +95,6 @@ def playGame():
    sense.set_pixel(gPos[0], gPos[1], (0,0,0) ) #old pixel off
    gPos[0] = gPos[0] + gX
    gPos[1] = gPos[1] + gY
-   print("I am here")
    gameBounce()
    color = colorsys.hsv_to_rgb((1-temp)*0.5 * 0.66  , 1.0, 1.0)
    sense.set_pixel(gPos[0], gPos[1], (int(color[0]*255), int(color[1]*255), int(color[2]*255)) ) # new pixel off
@@ -135,7 +135,7 @@ gX = 0
 gY = 0
 
 # Start
-#schedule.enter( 0, 1, intervalMeasurment, () )  
+schedule.enter( 0, 1, intervalMeasurment, () )  
 #schedule.enter( 60 - (int(time.time()) % 60) , 1, sendDataToServer, () )  
 schedule.enter( 5 , 3, playGame, () )  
 
