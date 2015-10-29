@@ -20,7 +20,7 @@ privateKey = "8beDvBJZ91fezaag4eNl"
 wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
 debianID = "7H5Dn3Ej"
 
-tempOffset = 0.0
+tempOffset = -2.3
 tempScale = 1.0
 
 accelerometerUpdateInterval = 0.1 # in sec
