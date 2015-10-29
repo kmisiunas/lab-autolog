@@ -5,7 +5,7 @@
 from sense_hat import SenseHat
 import sched, time
 import urllib2
-import os, random, colorsys, math
+import os, random, colorsys, math, json
 
 
 ### PARAMETERS ###
@@ -16,8 +16,12 @@ intervalAccelerometer = 0.1 # sec
 
 
 serverURL = "http://data.sparkfun.com/input/"
-publicKey = "OGzNYR7mdEFgYOON7g8m"
-privateKey = "8beDvBJZ91fezaag4eNl"
+
+# read kays from a file
+with open('keys.json') as keys_file: 
+   keys = json.(keys_file)
+publicKey = str(keys["public"])
+privateKey = str(keys["private"])
 
 # Wolfram DataDrop
 wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
