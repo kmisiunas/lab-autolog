@@ -15,7 +15,9 @@ Development in progress.
 
 ### Software
 
-'keys.json' file:
+Start script at: `sudo nano /etc/rc.local`
+
+`keys.json` file:
 
     { "public" : "abcd", "private": "anotheKeyABCD" }
 
