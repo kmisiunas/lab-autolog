@@ -135,7 +135,7 @@ gX = 0
 gY = 0
 
 # Start
-schedule.enter( 0, 1, intervalMeasurment, () )  
+schedule.enter( 0.1, 1, intervalMeasurment, () )  
 #schedule.enter( 60 - (int(time.time()) % 60) , 1, sendDataToServer, () )  
 schedule.enter( 5 , 3, playGame, () )  
 
