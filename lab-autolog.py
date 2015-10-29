@@ -5,7 +5,7 @@
 from sense_hat import SenseHat
 import sched, time
 import urllib2
-import os 
+import os, random
 
 
 ### PARAMETERS ###
@@ -30,8 +30,9 @@ tempScale = 1.0
 
 ### CODE ###
 
-def sendInforToServer():
+def sendDataToServer():
    "reads infor and sends it to the server"
+   schedule.enter( intervalSendToServer, 1, sendDataToServer, () ) # reoccuring 
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
    #url = wolframServer + debianID # wolfram DataDrop
@@ -50,7 +51,6 @@ def sendInforToServer():
    except Exception as e:
      print("There was an error: %r" % e)  
    clearAccumulate()
-   return []
    
 def tempCalibrated():
    return (sense.get_temperature() + tempOffset) * tempScale
@@ -61,11 +61,11 @@ def cpuTemp():
    
 def measureAccumulate():
    "Function for accumulating measurements"
+   schedule.enter( intervalMeasurment, 2, measureAccumulate, () ) # reoccuring 
    global temp, humidity, pressure
    temp.append( tempCalibrated() )
    humidity.append( sense.get_humidity() )
    pressure.append( sense.get_pressure() )
-   schedule.enter( intervalMeasurment, 2, measureAccumulate, () ) # reoccuring 
    
 def clearAccumulate():
    "Function for clearing accumulated data forn new averaging"
@@ -82,8 +82,32 @@ def vibrationDetector( sense, vibration ):
    "function_docstring"
    return []   
 
+def playGame():
+   "play game with LED to let user know that the device is active"
+   temp = max(-1.0, min( 1.0, (tempCalibrated() -21)/2  )) # range 19-21-23 in -1  to 1
+   speed = 0.8 - temp*0.5
+   schedule.enter( speed , 3, playGame, () ) # reooccuring 
+   global gX, gY, gPos
+   if(random.random() > 0.7 - temp*0.2):
+      gX = int( random.random() * 2 - 1)
+      gY = int( random.random() * 2 - 1)
+   gPos[0] = gPos[0] + gX
+   gPos[1] = gPos[1] + gY
+   gameBounce()
+   
+   
+   
+   green = (0, 255, 0)
+   blue = (0, 0, 255)
+   if( int(time.time()) % 2 == 0 ):
+      sense.set_pixel(0, 2, green)
+   else:
+      sense.set_pixel(0, 2, blue)
+      
+def gameBounce():
+   "plater bounces from the walls" 
 
-# Init
+###  Init ###
 
 schedule = sched.scheduler(time.time, time.sleep) # time events!
 
@@ -95,39 +119,16 @@ sense.clear(0, 0, 0)
 sense.low_light = True
 
 # Prepare arrays 
-temp = [tempCalibrated()]
-pressure = [sense.get_pressure()]
-humidity = [sense.get_humidity()]
+clearAccumulate()
+gPos = [4,4]
+gX = 0
+gY = 0
 
-# vibration: [ sum of |x|, sum of x^2, n] 
-vibration = [0.0, 0.0, 0.0]
-timeOld = int(time.time()) / 60 *60  + 60
-timeOldAccelerometer = time.time()
-
-while(True):
-  # check if time elapsed 
-  if(time.time() >= timeOld):
-    # Send infor to the server
-    sendInforToServer(sense, vibration)
-    timeOld += updateInterval
-
-  
-  # Update aceleroter
-  #if(time.time() >= timeOldAccelerometer):
-   # vibrationDetector(sense, vibration)
-    #timeOldAccelerometer += accelerometerUpdateInterval
-    #if( time.time() - timeOldAccelerometer > 10*  accelerometerUpdateInterval):
-      #print( 'Falling behind accelerometers schedule at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
-  # blink LED somewhere
-  green = (0, 255, 0)
-  blue = (0, 0, 255)
-  if( int(time.time()) % 2 == 0 ):
-    sense.set_pixel(0, 2, green)
-  else:
-    sense.set_pixel(0, 2, blue)
-  # CPU rest
-  time.sleep(0.05)
+# Start
+schedule.enter( 0, 1, intervalMeasurment, () )  
+schedule.enter( 60 - (int(time.time()) % 60) , 1, sendDataToServer, () )  
+schedule.enter( 5 , 3, playGame, () )  
 
 
-# Log failure
-print( 'lab-autolog shutdown at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
+# Shotdown?
+# print( 'lab-autolog shutdown at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
