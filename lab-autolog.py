@@ -3,14 +3,17 @@
 # by kmisiunas 
 
 from sense_hat import SenseHat
-import time
+import sched, time
 import urllib2
 import os 
 
 
 ### PARAMETERS ###
 
-updateInterval = 5*60 # in sec = 5min
+intervalSendToServer = 5*60 # in sec = 5min
+intervalMeasurment = 10 # sec
+intervalAccelerometer = 0.1 # sec
+
 
 serverURL = "http://data.sparkfun.com/input/"
 publicKey = "OGzNYR7mdEFgYOON7g8m"
@@ -20,15 +23,14 @@ privateKey = "8beDvBJZ91fezaag4eNl"
 wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
 debianID = "7H5Dn3Ej"
 
+# temp calibration
 tempOffset = -2.3
 tempScale = 1.0
-
-accelerometerUpdateInterval = 0.1 # in sec
 
 
 ### CODE ###
 
-def sendInforToServer( sense, vibration ):
+def sendInforToServer():
    "reads infor and sends it to the server"
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
@@ -53,14 +55,6 @@ def sendInforToServer( sense, vibration ):
 def tempCalibrated():
    return (sense.get_temperature() + tempOffset) * tempScale
    
-def readAndResetVibration( vibration ):
-   "sends infor to the server"
-   return []   
-   
-def vibrationDetector( sense, vibration ):
-   "function_docstring"
-   return []   
-   
 def cpuTemp():
    tmp = float( os.popen('cat /sys/class/thermal/thermal_zone0/temp').readline() )
    return (tmp/1000)
@@ -71,6 +65,7 @@ def measureAccumulate():
    temp.append( tempCalibrated() )
    humidity.append( sense.get_humidity() )
    pressure.append( sense.get_pressure() )
+   schedule.enter( intervalMeasurment, 2, measureAccumulate, () ) # reoccuring 
    
 def clearAccumulate():
    "Function for clearing accumulated data forn new averaging"
@@ -78,9 +73,19 @@ def clearAccumulate():
    temp = []
    pressure = []
    humidity = []
+   
+def readAndResetVibration( vibration ):
+   "sends infor to the server"
+   return []   
+   
+def vibrationDetector( sense, vibration ):
+   "function_docstring"
+   return []   
 
 
 # Init
+
+schedule = sched.scheduler(time.time, time.sleep) # time events!
 
 sense = SenseHat()
 
@@ -126,20 +131,3 @@ while(True):
 
 # Log failure
 print( 'lab-autolog shutdown at ' + time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
-
-# print red X on the hat to let the user know that t needs restatting
-X = [255, 0, 0]  # Red
-O = [0, 0, 0]  # White
-
-question_mark = [
-X, O, O, O, O, O, O, X,
-O, X, O, O, O, O, X, O,
-O, O, X, O, O, X, O, O,
-O, O, O, X, O, O, O, O,
-O, O, O, O, X, O, O, O,
-O, O, X, O, O, X, O, O,
-O, X, O, O, O, O, X, O,
-X, O, O, O, O, O, O, X
-]
-
-sense.set_pixels(question_mark)
