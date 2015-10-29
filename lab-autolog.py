@@ -19,7 +19,7 @@ serverURL = "http://data.sparkfun.com/input/"
 
 # read kays from a file
 with open('keys.json') as keys_file: 
-   keys = json.(keys_file)
+   keys = json.load(keys_file)
 publicKey = str(keys["public"])
 privateKey = str(keys["private"])
 
