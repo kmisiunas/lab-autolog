@@ -36,9 +36,9 @@ def sendDataToServer():
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
    #url = wolframServer + debianID # wolfram DataDrop
-   vals = "&temp=%.2f" % sum(temp)/len(temp)
-   vals += "&humidity=%.3f" % sum(humidity)/len(humidity)
-   vals += "&pressure=%.3f" % sum(pressure)/len(pressure)
+   vals = "&temp=%.2f" % (sum(temp)/len(temp))
+   vals += "&humidity=%.3f" % (sum(humidity)/len(humidity))
+   vals += "&pressure=%.3f" % (sum(pressure)/len(pressure))
    vals += "&cpu_temp=%.2f" % cpuTemp()
    vals += "&light=%.3f" % 0.0
    vals += "&vibration=%.3f" % 0.0
@@ -89,9 +89,7 @@ def playGame():
    speed = 0.8 - temp*0.5
    schedule.enter( speed , 3, playGame, () ) # reooccuring 
    global gX, gY, gPos
-   if(random.random() > 0.7 - temp*0.2):
-      gX = round( random.random() * 2 - 1)
-      gY = round( random.random() * 2 - 1)
+   if(random.random() > 0.7 - temp*0.2): gameNewDirection()
    sense.set_pixel(gPos[0], gPos[1], (0,0,0) ) #old pixel off
    gPos[0] = gPos[0] + gX
    gPos[1] = gPos[1] + gY
@@ -116,6 +114,12 @@ def gameBounce():
       gPos[1] = maxLine-1
       gY = -1
    
+def gameNewDirection():
+   global gX, gY
+   gX = round( random.random() * 2 - 1)
+   gY = round( random.random() * 2 - 1)
+   if( gX == 0 && gY ==0 ): 
+      gameNewDirection()
 
 ###  Init ###
 
