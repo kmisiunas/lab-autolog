@@ -44,7 +44,9 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
  - [X] Send data every 5 min to data.sparkfun.com
  - [ ] Actively collect vibration data 
 
+## ToDo
 
+ - [ ] Test and fix if the autostart script works without the user
 
 ## Data Storage
 
