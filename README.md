@@ -15,7 +15,7 @@ Development in progress.
 
 ### Software
 
-To set it up by SSH into the rasperry pi. Confugure network access, I2C and the sensor hat.
+To set it up by SSH into the raspberry pi. Configure network access, I2C and the sensor hat.
 
 Download the program by typing
 
@@ -29,7 +29,7 @@ Create configuration file with your keys from https://data.sparkfun.com/
     
 Where you add `{ "public" : "publicKey", "private": "privateKey" }` with your keys. Then save by clicking Ctrl+X and saving.
 
-Then edit the startup script with command `sudo nano /etc/rc.local` to 
+Then edit the start-up script with command `sudo nano /etc/rc.local` to 
 
     # Auto run our application
     for i in {1..300}; do ping -c1 www.google.com &> /dev/null && break; done
@@ -42,7 +42,7 @@ Then edit the startup script with command `sudo nano /etc/rc.local` to
 ## Architecture
 
  - [X] Send data every 5 min to data.sparkfun.com
- - [ ] Activley collect vibration data 
+ - [ ] Actively collect vibration data 
 
 
 
