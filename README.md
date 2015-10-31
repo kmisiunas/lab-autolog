@@ -9,30 +9,46 @@ Development in progress.
 ## How to setup
 
 ### Hardware
+
  - Raspberry Pi 2
  - Sensor Hat
- - 
 
 ### Software
 
-Start script at: `sudo nano /etc/rc.local`
+To set it up by SSH into the rasperry pi. Confugure network access, I2C and the sensor hat.
 
-`keys.json` file:
+Download the program by typing
 
-    { "public" : "abcd", "private": "anotheKeyABCD" }
+    cd ~
+    git clone https://github.com/kmisiunas/lab-autolog.git
+    
+Create configuration file with your keys from https://data.sparkfun.com/
+
+    cd ~/lab-autolog/
+    nano keys.json
+    
+Where you add `{ "public" : "publicKey", "private": "privateKey" }` with your keys. Then save by clicking Ctrl+X and saving.
+
+Then edit the startup script with command `sudo nano /etc/rc.local` to 
+
+    # Auto run our application
+    for i in {1..300}; do ping -c1 www.google.com &> /dev/null && break; done
+    cd  ~/lab-autolog/
+    git pull
+    python lab-autolog.py &
+
+
 
 ## Architecture
 
- - [ ] Send data every 5 min to data.sparkfun.com
+ - [X] Send data every 5 min to data.sparkfun.com
  - [ ] Activley collect vibration data 
- - 
 
 
 
 ## Data Storage
 
 ### data.sparkfun.com
-
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
 
