@@ -24,7 +24,7 @@ publicKey = str(keys["public"])
 privateKey = str(keys["private"])
 
 # MathWorks ThingSpeak
-thingSpeakServer = "http://api.thingspeak.com/update"
+thingSpeakServer = "https://api.thingspeak.com/update"
 thingSpeakKey = str(keys["thingSpeakKey"])
 
 # temp calibration
@@ -62,7 +62,7 @@ def sendDataToServer():
       'light': 0.0,
       'vibration' : 0.0,
       'vibration_peaks' : 0.0,
-      'key': thingSpeakKey }
+      'api_key': thingSpeakKey }
    resp = requests.post( thingSpeakServer , params=data )
    clearAccumulate()
    
