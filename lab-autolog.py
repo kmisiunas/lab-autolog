@@ -4,7 +4,7 @@
 
 from sense_hat import SenseHat
 import sched, time
-import urllib2, httplib
+import urllib2, httplib, urllib
 import os, random, colorsys, math, json
 
 
