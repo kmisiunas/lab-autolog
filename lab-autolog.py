@@ -4,7 +4,7 @@
 
 from sense_hat import SenseHat
 import sched, time
-import urllib2, httplib, urllib
+import urllib2, requests
 import os, random, colorsys, math, json
 
 
@@ -24,7 +24,7 @@ publicKey = str(keys["public"])
 privateKey = str(keys["private"])
 
 # MathWorks ThingSpeak
-thingSpeakServer = "https://api.thingspeak.com"
+thingSpeakServer = "https://api.thingspeak.com/update"
 thingSpeakKey = str(keys["thingSpeakKey"])
 
 # temp calibration
@@ -54,7 +54,7 @@ def sendDataToServer():
    except Exception as e:
      print("There was an error: %r" % e) 
    #Send ToThingSpeak via POST
-   params = urllib.urlencode({
+   data = {
       'temp': (sum(temp)/len(temp)), 
       'humidity': (sum(humidity)/len(humidity)), 
       'pressure': (sum(pressure)/len(pressure)),
@@ -62,11 +62,8 @@ def sendDataToServer():
       'light': 0.0,
       'vibration' : 0.0,
       'vibration_peaks' : 0.0,
-      'key': thingSpeakKey })
-   headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
-   conn = httplib.HTTPConnection("api.thingspeak.com:80")
-   conn.request("POST", "/update", params, headers)
-   #response = conn.getresponse() # dont need?
+      'key': thingSpeakKey }
+   resp = requests.post( thingSpeakServer , params=data )
    clearAccumulate()
    
 def tempCalibrated():
