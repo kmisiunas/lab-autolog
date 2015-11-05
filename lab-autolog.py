@@ -55,14 +55,14 @@ def sendDataToServer():
      print("There was an error: %r" % e) 
    #Send ToThingSpeak via POST
    data = {
-      'temp': (sum(temp)/len(temp)), 
+      'field1': (sum(temp)/len(temp)), 
       'humidity': (sum(humidity)/len(humidity)), 
       'pressure': (sum(pressure)/len(pressure)),
       'cpu_temp': cpuTemp(),
       'light': 0.0,
       'vibration' : 0.0,
       'vibration_peaks' : 0.0,
-      'api_key': thingSpeakKey }
+      'key': thingSpeakKey }
    resp = requests.post( thingSpeakServer , params=data )
    clearAccumulate()
    
