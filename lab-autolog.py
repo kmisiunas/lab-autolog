@@ -4,7 +4,7 @@
 
 from sense_hat import SenseHat
 import sched, time
-import urllib2
+import urllib2, httplib
 import os, random, colorsys, math, json
 
 
@@ -23,9 +23,9 @@ with open('keys.json') as keys_file:
 publicKey = str(keys["public"])
 privateKey = str(keys["private"])
 
-# Wolfram DataDrop
-wolframServer = "https://datadrop.wolframcloud.com/api/v1.0/Add?bin="
-debianID = "7H5Dn3Ej"
+# MathWorks ThingSpeak
+thingSpeakServer = "https://api.thingspeak.com"
+thingSpeakKey = str(keys["thingSpeakKey"])
 
 # temp calibration
 tempOffset = -2.3
@@ -39,7 +39,6 @@ def sendDataToServer():
    schedule.enter( intervalSendToServer, 1, sendDataToServer, () ) # reoccuring 
    print("debug: send data request at "+ time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime()) )
    url = serverURL + publicKey + "?private_key=" + privateKey
-   #url = wolframServer + debianID # wolfram DataDrop
    vals = "&temp=%.2f" % (sum(temp)/len(temp))
    vals += "&humidity=%.3f" % (sum(humidity)/len(humidity))
    vals += "&pressure=%.3f" % (sum(pressure)/len(pressure))
@@ -53,7 +52,21 @@ def sendDataToServer():
       #s = f.read()
       f.close()
    except Exception as e:
-     print("There was an error: %r" % e)  
+     print("There was an error: %r" % e) 
+   #Send ToThingSpeak via POST
+   params = urllib.urlencode({
+      'temp': (sum(temp)/len(temp)), 
+      'humidity': (sum(humidity)/len(humidity)), 
+      'pressure': (sum(pressure)/len(pressure)),
+      'cpu_temp': cpuTemp(),
+      'light': 0.0,
+      'vibration' : 0.0,
+      'vibration_peaks' : 0.0,
+      'key': thingSpeakKey })
+   headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
+   conn = httplib.HTTPConnection("api.thingspeak.com:80")
+   conn.request("POST", "/update", params, headers)
+   #response = conn.getresponse() # dont need?
    clearAccumulate()
    
 def tempCalibrated():
