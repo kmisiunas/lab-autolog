@@ -56,12 +56,12 @@ def sendDataToServer():
    #Send ToThingSpeak via POST
    data = {
       'field1': (sum(temp)/len(temp)), 
-      'humidity': (sum(humidity)/len(humidity)), 
-      'pressure': (sum(pressure)/len(pressure)),
-      'cpu_temp': cpuTemp(),
-      'light': 0.0,
-      'vibration' : 0.0,
-      'vibration_peaks' : 0.0,
+      'field2': (sum(humidity)/len(humidity)), 
+      'field3': (sum(pressure)/len(pressure)),
+      'field4': cpuTemp(),
+      'field5': 0.0,
+      'field6' : 0.0,
+      'field7' : 0.0,
       'key': thingSpeakKey }
    resp = requests.post( thingSpeakServer , params=data )
    clearAccumulate()
