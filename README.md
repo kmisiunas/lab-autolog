@@ -21,6 +21,7 @@ Download the program by typing
 
     cd ~
     git clone https://github.com/kmisiunas/lab-autolog.git
+    pip install requests
     
 Create configuration file with your keys from https://data.sparkfun.com/
 
