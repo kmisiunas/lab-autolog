@@ -24,7 +24,7 @@ publicKey = str(keys["public"])
 privateKey = str(keys["private"])
 
 # MathWorks ThingSpeak
-thingSpeakServer = "https://api.thingspeak.com/update"
+thingSpeakServer = "http://api.thingspeak.com/update"
 thingSpeakKey = str(keys["thingSpeakKey"])
 
 # temp calibration
