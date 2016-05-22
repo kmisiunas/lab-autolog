@@ -55,4 +55,7 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
 
+## Test embedded content 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Mg_66TRsb6Y" frameborder="0" allowfullscreen></iframe>
 
