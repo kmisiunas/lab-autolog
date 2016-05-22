@@ -10,7 +10,7 @@ http://kmisiunas.github.io/lab-autolog/
 
 ### Hardware
 
- - Raspberry Pi 2
+ - Raspberry Pi 2 +
  - Sensor Hat
 
 ### Software
@@ -49,10 +49,15 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
 
  - [ ] Test and fix if the autostart script works without the user
  - [ ] add outside [weather station](https://www.cl.cam.ac.uk/research/dtg/weather/current-obs.txt)
- - [ ] locally stored daily values on http://kmisiunas.github.io/lab-autolog/
+ - [ ] locally stored values for fast access on http://kmisiunas.github.io/lab-autolog/
+ - [ ] migrate to otther chart libraty?
+ - [ ] better homepage
 
 ## Data Storage
 
 ### data.sparkfun.com
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
+
+## Technical documentation
+ - [GitHub Pages](https://help.github.com/articles/what-are-github-pages/)
