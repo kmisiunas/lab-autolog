@@ -2,7 +2,7 @@
 
 Automatically record parameters an experimental setup and send them online. 
 
-Development in progress. 
+http://kmisiunas.github.io/lab-autolog/
 
 ## You will need
 
@@ -48,14 +48,11 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
 ## ToDo
 
  - [ ] Test and fix if the autostart script works without the user
+ - [ ] add outside [weather station](https://www.cl.cam.ac.uk/research/dtg/weather/current-obs.txt)
+ - [ ] locally stored daily values on http://kmisiunas.github.io/lab-autolog/
 
 ## Data Storage
 
 ### data.sparkfun.com
 
 https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
-
-## Test embedded content 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Mg_66TRsb6Y" frameborder="0" allowfullscreen></iframe>
-
