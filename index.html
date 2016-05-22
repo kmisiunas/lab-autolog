@@ -1,1 +1,30 @@
-Hello world!
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Lab Data Logging</title>
+		
+		<script src ="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	
+		<script src="http://code.highcharts.com/stock/highstock.js"></script>
+		<script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+		
+		<script src="LabLog.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				LabLogView('OGzNYR7mdEFgYOON7g8m')
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Temperature</h1>
+		<div id="Temperature" style="height: 400px; min-width: 600px"></div>
+		<h1>Humidity</h1>
+		<div id="Humidity" style="height: 300px; min-width: 600px"></div>
+		<h1>Pressure</h1>
+		<div id="Pressure" style="height: 300px; min-width: 600px"></div>
+		<h1>Light</h1>
+		<div id="Light" style="height: 300px; min-width: 600px"></div>
+		<h1>Vibration</h1>
+		<div id="Vibration" style="height: 300px; min-width: 600px"></div>
+	</body>
+</html>
