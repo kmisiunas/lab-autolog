@@ -1,4 +1,9 @@
-keys.json
+# Lab-autolog specific
+
+config.json
+data/*
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

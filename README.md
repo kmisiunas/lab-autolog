@@ -1,34 +1,30 @@
 # lab-autolog
 
-Automatically record parameters an experimental setup and send them online. 
+Automatically record parameters of the lab and store them online. Find the graphs here:
 
 http://kmisiunas.github.io/lab-autolog/
 
-## You will need
-
-## How to setup
+## Setup
 
 ### Hardware
 
  - Raspberry Pi 2 +
  - Sensor Hat
+ 
+We recommend raising the rPI above the sensor to minimise the heating from the processor.
 
 ### Software
 
-To set it up by SSH into the raspberry pi. Configure network access, I2C and the sensor hat.
-
-Download the program by typing
+ - [Raspbian OS](https://www.raspbian.org/)
+ - Activate I2C via `raspi-config`
+ - Connect rPI to the internet
+ 
+To set it up by SSH into the raspberry pi. Download the program by typing
 
     cd ~
     git clone https://github.com/kmisiunas/lab-autolog.git
     pip install requests
     
-Create configuration file with your keys from https://data.sparkfun.com/
-
-    cd ~/lab-autolog/
-    nano keys.json
-    
-Where you add `{ "public" : "publicKey", "private": "privateKey" }` with your keys. Then save by clicking Ctrl+X and saving.
 
 Then edit the start-up script with command `sudo nano /etc/rc.local` to 
 
@@ -42,8 +38,15 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
 
 ## Architecture
 
- - [X] Send data every 5 min to data.sparkfun.com
- - [ ] Actively collect vibration data 
+New architecture uses GitHub almost exclusively. We use three repositories for this:
+
+ 1. `master` for storing the program
+ 2. `gh-pages` for storing UI for data accessing
+ 3. `data` for storing collected data
+
+Thus we need to add access keys to the repository to get this repository to work. These should be added to `config.json` that is excluded from the repository. 
+
+The data repository is stored as a separate `data/` folder witch automatically points to the right repository. 
 
 ## ToDo
 
@@ -55,9 +58,6 @@ Then edit the start-up script with command `sudo nano /etc/rc.local` to
 
 ## Data Storage
 
-### data.sparkfun.com
-
-https://data.sparkfun.com/streams/OGzNYR7mdEFgYOON7g8m
 
 ## Technical documentation
  - [GitHub Pages](https://help.github.com/articles/what-are-github-pages/)
